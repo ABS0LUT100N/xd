@@ -1,0 +1,2200 @@
+/* =====================================================
+   GAMEZONE - CSS SIMPLIFICADO Y COMENTADO
+   Se agrupan reglas repetidas conservando las secciones.
+===================================================== */
+
+/* 1. Variables de colores y medidas */
+:root {
+    --bg: #08090d;
+    --bg-secondary: #101219;
+    --card: #151820;
+    --card-hover: #1b1f29;
+    --border: rgba(255, 255, 255, .08);
+    --text: #fff;
+    --text-secondary: #a5a8b3;
+    --primary: #7c3aed;
+    --primary-light: #a855f7;
+    --accent-orange: #ff5722;
+    --accent-orange-glow: rgba(255, 87, 34, .25);
+    --success: #22c55e;
+    --danger: #ef4444;
+    --max-width: 1200px;
+}
+
+/* 2. Estilos generales y tipografía */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+.logo,
+.section-title h2,
+.section-header h2,
+.small-title,
+.pro-slides-track .featured-content span,
+.pro-slides-track .featured-card span {
+    font-family: 'Rajdhani', sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+.logo,
+.section-title h2,
+.section-header h2 {
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.6;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top right, rgba(124, 58, 237, .15), transparent 45%),
+        linear-gradient(rgba(1, 1, 3, .92), rgba(1, 1, 3, .92)),
+        url('../Images/9610.jpg'), var(--bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #343746;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* 3. Encabezado, logo y navegación */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8, 9, 13, .92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-container {
+    max-width: var(--max-width);
+    height: 75px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px;
+    color: white;
+    font-size: 24px !important;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.logo img,
+.logo-img {
+    display: inline-block;
+    width: auto !important;
+    height: 56px !important;
+    max-height: 56px !important;
+    object-fit: contain;
+    vertical-align: middle;
+    transition: transform .3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.08);
+}
+
+.logo>span:last-child>span {
+    color: var(--primary-light);
+}
+
+.logo-icon {
+    font-size: 27px;
+}
+
+.navbar {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.theme-btn,
+.menu-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+}
+
+.theme-btn:hover,
+.menu-btn:hover {
+    border-color: var(--primary);
+    background: var(--card-hover);
+}
+
+.menu-btn {
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu a {
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border);
+    color: white;
+    text-decoration: none;
+}
+
+/* 4. Sección principal (hero) */
+.hero {
+    position: relative;
+    max-width: var(--max-width);
+    min-height: 500px;
+    margin: auto;
+    padding: 70px 30px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124, 58, 237, .22), transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+}
+
+.hero-tag {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: var(--primary-light);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    margin-bottom: 25px;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+}
+
+.hero h1 span,
+.publish-info h2 span {
+    color: var(--primary-light);
+}
+
+.hero p {
+    max-width: 600px;
+    margin-bottom: 30px;
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.hero-decoration {
+    position: absolute;
+    right: 5%;
+    font-size: 220px;
+    opacity: .05;
+    transform: rotate(-10deg);
+    user-select: none;
+}
+
+/* 5. Botones y sesión de usuario */
+button {
+    font-family: inherit;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 13px 24px;
+    border-radius: 9px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-primary {
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, .25);
+}
+
+.btn-secondary {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .05);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, .10);
+}
+
+.user-session {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 7px 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+}
+
+.user-session.active {
+    display: flex;
+}
+
+#userName {
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.logout-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    background: #b91c1c; /* Cambiado de #ef4444 a un rojo más oscuro para cumplir WCAG */
+    color: #ffffff;
+}
+
+.logout-btn:hover {
+    background: #991b1b; /* Tono más oscuro al pasar el cursor */
+}
+
+#loginButton,
+.login-btn {
+    display: flex !important;
+    align-items: center !important;
+    height: 40px !important;
+    padding: 8px 16px !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    background: #151820 !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: all .3s ease !important;
+}
+
+#loginButton:hover,
+.login-btn:hover {
+    background: #4c1d95 !important;
+    color: #ffffff !important;
+    border-color: #4c1d95 !important;
+}
+
+/* Botón de inicio de sesión en modo claro */
+body.light #loginButton,
+body.light .login-btn {
+    background: #f3f4f6 !important;
+    color: #17181d !important;
+    border: 1px solid #d1d5db !important;
+}
+
+/* Ocultar el login si la sesión activa está antes del botón */
+#userSession.active~#loginButton,
+#userSession.active~.login-btn {
+    display: none !important;
+}
+
+/* 6. Contenedores y títulos de sección */
+.featured-section,
+.news-section {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 70px 20px;
+}
+
+.featured-section {
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.small-title {
+    color: var(--primary-light);
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+}
+
+.section-title h2,
+.section-header h2 {
+    margin-top: 5px;
+    font-size: 34px;
+    letter-spacing: -1px;
+}
+
+/* 7. Slider de noticias destacadas */
+.gz-pro-slider-container {
+    position: relative !important;
+    width: 100% !important;
+    height: 450px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 18px !important;
+    background: var(--bg);
+}
+
+.pro-slides-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 0 !important;
+    transition: transform .6s cubic-bezier(.25, 1, .5, 1);
+}
+
+.pro-slides-track .featured-card {
+    position: relative;
+    display: flex;
+    flex: 0 0 100% !important;
+    align-items: flex-end;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    border: none;
+}
+
+.featured-card-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .6;
+    transition: .5s;
+}
+
+/* Sombra sobre la imagen para facilitar la lectura */
+.pro-slides-track .featured-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(transparent 10%, rgba(8, 9, 13, .5) 45%, rgba(8, 9, 13, .95) 100%);
+    pointer-events: none;
+}
+
+.pro-slides-track .featured-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 35px 40px;
+    color: white;
+}
+
+.pro-slides-track .featured-content h3 {
+    margin: 10px 0;
+    color: white !important;
+    font-size: clamp(28px, 4vw, 40px) !important;
+    font-weight: 800 !important;
+    line-height: 1.1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .6);
+}
+
+.pro-slides-track .featured-content p {
+    max-width: 750px;
+    color: #cbd5e1 !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, .5);
+}
+
+/* Insignia naranja para la categoría del slider */
+.pro-slides-track .featured-content span,
+.pro-slides-track .featured-card span {
+    display: inline-block !important;
+    margin-bottom: 15px !important;
+    padding: 6px 14px !important;
+    border: 1px solid rgba(255, 87, 34, .3) !important;
+    border-radius: 6px !important;
+    background: rgba(255, 87, 34, .15) !important;
+    color: var(--accent-orange) !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 0 15px rgba(255, 87, 34, .1) !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .2) !important;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: calc(50% + 25px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    transform: translateY(-50%);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(21, 24, 32, .85);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all .3s ease;
+}
+
+.slider-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+    border-color: var(--primary-light);
+    background: var(--primary);
+}
+
+.prev-btn {
+    left: -55px;
+}
+
+.next-btn {
+    right: -55px;
+}
+
+.featured-slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin: 25px 0 15px;
+}
+
+.featured-slider-dots a {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .2);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.featured-slider-dots a.dot-active {
+    transform: scale(1.3);
+    background: var(--accent-orange) !important;
+    box-shadow: 0 0 10px var(--accent-orange) !important;
+}
+
+.featured-section .small-title {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 87, 34, .2);
+    border-radius: 6px;
+    background: rgba(124, 58, 237, .15);
+    color: var(--accent-orange) !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 2.5px !important;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(255, 87, 34, .05);
+}
+
+.featured-section .section-title h2 {
+    margin-top: 5px;
+    background: linear-gradient(135deg, #a855f7 20%, #ff5722 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .5));
+    font-size: clamp(32px, 5vw, 46px) !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+}
+
+/* 8. Buscador, categorías y tarjetas de noticias */
+.section-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 300px;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #777b87;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.category {
+    padding: 8px 15px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    background: var(--card);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.category:hover,
+.category.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.news-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
+    transition: transform .3s, background .3s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+}
+
+.news-image-container {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+    background: #20232d;
+}
+
+.news-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.news-card:hover .news-image {
+    transform: scale(1.05);
+}
+
+.news-category {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: var(--primary);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.news-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 18px;
+}
+
+.news-content h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.news-content p {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.news-meta {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    color: #777b87;
+    font-size: 11px;
+}
+
+.news-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.news-actions button {
+    padding: 5px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.news-actions button:hover {
+    color: white;
+}
+
+.like-btn:hover,
+.delete-btn:hover {
+    color: var(--danger) !important;
+}
+
+.edit-btn:hover {
+    color: #f59e0b !important;
+}
+
+.no-results {
+    display: none;
+    padding: 80px 20px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.no-results div {
+    margin-bottom: 15px;
+    font-size: 50px;
+}
+
+.no-results h3 {
+    margin-bottom: 5px;
+    color: white;
+}
+
+/* 9. Sección para publicar noticias */
+.publish-section {
+    padding: 90px 20px;
+    background: linear-gradient(180deg, transparent, rgba(124, 58, 237, .06));
+}
+
+.publish-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.publish-info {
+    flex: 1;
+    min-width: 300px;
+    max-width: 550px;
+}
+
+.publish-info h2 {
+    margin: 10px 0 20px;
+    font-size: 45px;
+    line-height: 1.1;
+}
+
+.publish-info>p,
+.publish-desc {
+    max-width: 450px;
+    margin-bottom: 35px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Tarjetas informativas con iconos */
+.publish-cards-grid,
+.publish-features-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.publish-card,
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(124, 58, 237, .2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .02);
+    text-align: center;
+    transition: all .3s ease;
+}
+
+.publish-card {
+    width: 160px;
+    padding: 15px 10px;
+}
+
+.feature-item {
+    flex: 1;
+    padding: 15px 10px;
+    border-radius: 10px;
+    transition: all .25s ease;
+}
+
+.publish-card p,
+.feature-item span {
+    color: white;
+    font-size: .9rem;
+    line-height: 1.3;
+}
+
+.publish-card p {
+    margin: 0;
+}
+
+.feature-item span {
+    font-size: .85rem;
+    font-weight: 500;
+}
+
+.publish-icon-box,
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: rgba(124, 58, 237, .1);
+}
+
+.publish-icon-box {
+    width: 45px;
+    height: 45px;
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    transition: all .25s ease;
+}
+
+.publish-icon-box i,
+.feature-icon i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.publish-icon-box i {
+    font-size: 1.4rem;
+}
+
+.publish-card:hover,
+.feature-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    background: rgba(124, 58, 237, .06);
+    box-shadow: 0 6px 15px rgba(124, 58, 237, .2);
+}
+
+.feature-item:hover .feature-icon {
+    background: var(--primary);
+}
+
+.feature-item:hover .feature-icon i {
+    color: white;
+}
+
+/* Panel de acceso ubicado a la derecha */
+.publish-login-box,
+.publish-login-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px 30px;
+    border: 1px solid rgba(255, 255, 255, .05);
+    border-radius: 16px;
+    background: #18191c;
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}
+
+.publish-login-card {
+    max-width: 400px;
+    padding: 30px;
+    background: #141519;
+    box-shadow: none;
+}
+
+.login-box-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.secure-lock {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.btn-primary-purple {
+    margin-top: 15px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    background: var(--primary);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.btn-primary-purple:hover {
+    background: #5b21b6;
+}
+
+/* 10. Formulario de publicación */
+.form-card {
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+}
+
+.form-card h3 {
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: #0d0f14;
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #707481;
+    font-size: 11px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.full-btn {
+    flex: 1;
+}
+
+.btn-cancel {
+    display: none;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+/* 11. Ventanas modales y acceso */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 30px;
+    background: rgba(0, 0, 0, .75);
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    display: grid;
+    place-items: center;
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    animation: modalIn .25s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 5;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .6);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-body h2 {
+    margin: 10px 0 15px;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.modal-body p {
+    color: #c2c5ce;
+    white-space: pre-line;
+}
+
+.modal-meta {
+    margin-bottom: 20px;
+    color: #777b87;
+    font-size: 12px;
+}
+
+.login-modal {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--card);
+    animation: modalIn .25s ease;
+}
+
+.login-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.login-icon {
+    display: grid;
+    place-items: center;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    font-size: 30px;
+}
+
+.login-header h2 {
+    margin-bottom: 5px;
+    font-size: 27px;
+}
+
+.login-header p,
+.login-required p {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.login-submit {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.login-error {
+    display: none;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 1px solid rgba(239, 68, 68, .3);
+    border-radius: 7px;
+    background: rgba(239, 68, 68, .12);
+    color: #f87171;
+    font-size: 12px;
+    text-align: center;
+}
+
+.login-error.active {
+    display: block;
+}
+
+.demo-account {
+    margin-top: 25px;
+    padding: 15px;
+    border: 1px solid rgba(124, 58, 237, .2);
+    border-radius: 9px;
+    background: rgba(124, 58, 237, .08);
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-align: center;
+}
+
+.demo-account strong {
+    display: block;
+    margin-bottom: 7px;
+    color: white;
+}
+
+.demo-account p {
+    margin: 2px;
+}
+
+.demo-account b {
+    color: var(--primary-light);
+}
+
+.login-required {
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.login-required-icon {
+    margin-bottom: 10px;
+    font-size: 45px;
+}
+
+.login-required h3 {
+    margin-bottom: 8px;
+    font-size: 21px;
+}
+
+.login-required p {
+    max-width: 350px;
+    margin: 0 auto 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 12. Pie de página */
+.footer {
+    padding-top: 50px;
+    border-top: 1px solid var(--border);
+    background: #050609;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 0 20px 40px;
+}
+
+.footer-brand p {
+    max-width: 300px;
+    margin-top: 15px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links h4 {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.copyright {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    color: #60636e;
+    font-size: 11px;
+    text-align: center;
+}
+
+/* 13. Modo claro: colores y fondos */
+body.light {
+    --bg: #f5f5f7;
+    --bg-secondary: #fff;
+    --card: #fff;
+    --card-hover: #f0f0f4;
+    --text: #17181d;
+    --text-secondary: #626572;
+    --border: rgba(0, 0, 0, .09);
+    color-scheme: light;
+    color: #171522 !important;
+    background-color: #fff !important;
+    background:
+        radial-gradient(circle at top right, rgba(124, 58, 237, .08), transparent 45%),
+        linear-gradient(rgba(255, 255, 255, .90), rgba(255, 255, 255, .90)),
+        url('../Images/9611.jpg'), #fff !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+body.light .header {
+    background: rgba(245, 245, 247, .92);
+}
+
+body.light .mobile-menu {
+    background: #fff;
+}
+
+body.light .hero::before {
+    opacity: .5;
+}
+
+body.light .footer {
+    background: #e9e9ed;
+}
+
+/* Menús en modo claro */
+body.light .navbar a,
+body.light .navbar a i,
+body.light .mobile-menu a,
+body.light .mobile-menu a i {
+    color: #333;
+}
+
+body.light .navbar a:hover,
+body.light .navbar a:hover i,
+body.light .mobile-menu a:hover,
+body.light .mobile-menu a:hover i {
+    color: var(--primary);
+}
+
+body.light .mobile-menu a:hover {
+    background: #f0f0f4;
+}
+
+/* Campos de texto y tarjetas en modo claro */
+body.light .form-group input,
+body.light .form-group select,
+body.light .form-group textarea,
+body.light .search-box {
+    background: #f5f5f7;
+    color: #17181d;
+}
+
+body.light .gz-pro-slider-container,
+body.light .form-card,
+body.light .featured-card {
+    border: 1px solid rgba(0, 0, 0, .08) !important;
+    background-color: #fff !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .04) !important;
+}
+
+body.light .section-title h2,
+body.light .section-header h2 {
+    color: #101219 !important;
+    text-shadow: none !important;
+}
+
+/* El slider mantiene texto blanco sobre su degradado púrpura */
+body.light .pro-slides-track .featured-overlay {
+    background: linear-gradient(transparent 0%, rgba(124, 58, 237, .4) 50%, rgba(32, 26, 50, .95) 100%) !important;
+}
+
+body.light .pro-slides-track .featured-content h3 {
+    color: #fff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .4) !important;
+}
+
+body.light .pro-slides-track .featured-content p {
+    color: #cbd5e1 !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .3) !important;
+}
+
+body.light .pro-slides-track .featured-content span,
+body.light .pro-slides-track .featured-card span {
+    color: #ff5722 !important;
+}
+
+body.light .featured-section .section-title h2 {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: drop-shadow(0 2px 8px rgba(124, 58, 237, .15)) !important;
+}
+
+body.light .slider-arrow {
+    border: 1px solid rgba(0, 0, 0, .1) !important;
+    background: rgba(255, 255, 255, .9) !important;
+    color: #101219 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08) !important;
+}
+
+body.light .slider-arrow:hover {
+    border-color: var(--primary-light) !important;
+    background: var(--primary) !important;
+    color: white !important;
+}
+
+/* Sesión iniciada y botón de acceso */
+body.light #userName {
+    color: #171522 !important;
+    font-weight: 700 !important;
+}
+
+body.light .user-session {
+    background: #fff !important;
+    border: 1px solid rgba(0, 0, 0, .09) !important;
+}
+
+body.light #loginButton,
+body.light .login-btn {
+    background: #f3f4f6 !important; /* Fondo gris muy claro en lugar de blanco puro si hay conflicto */
+    color: #171522 !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* Textos de formulario y logo */
+body.light .form-card h3,
+body.light .form-card h2,
+body.light .form-card p,
+body.light .login-required h3,
+body.light .login-required p {
+    color: #101219 !important;
+}
+
+body.light .logo>span:last-child {
+    color: #171522 !important;
+}
+
+body.light .logo>span:last-child>span {
+    color: var(--primary-light) !important;
+}
+
+/* Tarjetas informativas de la sección de publicación */
+body.light .publish-info h2 {
+    color: #171522 !important;
+}
+
+body.light .publish-info h2 span {
+    color: var(--primary) !important;
+}
+
+body.light .publish-desc,
+body.light .publish-info>p {
+    color: #626572 !important;
+}
+
+body.light .publish-card,
+body.light .feature-item {
+    border: 1px solid rgba(124, 58, 237, .18) !important;
+    background: rgba(255, 255, 255, .85) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .04);
+}
+
+body.light .publish-card p,
+body.light .feature-item span,
+body.light .publish-login-box h2,
+body.light .publish-login-box h3,
+body.light .publish-login-box p,
+body.light .publish-login-card h2,
+body.light .publish-login-card h3,
+body.light .publish-login-card p,
+body.light .publish-features p {
+    color: #333344 !important;
+}
+
+body.light .publish-icon-box,
+body.light .feature-icon {
+    background: rgba(124, 58, 237, .10) !important;
+}
+
+body.light .publish-icon-box i,
+body.light .feature-icon i,
+body.light .secure-lock {
+    color: var(--primary) !important;
+}
+
+body.light .publish-card:hover,
+body.light .feature-item:hover {
+    border-color: var(--primary-light) !important;
+    background: #f5f0ff !important;
+    box-shadow: 0 6px 18px rgba(124, 58, 237, .12);
+}
+
+body.light .feature-item:hover .feature-icon {
+    background: var(--primary) !important;
+}
+
+body.light .feature-item:hover .feature-icon i {
+    color: #fff !important;
+}
+
+body.light .publish-login-box,
+body.light .publish-login-card {
+    border: 1px solid rgba(124, 58, 237, .16) !important;
+    background: #fff !important;
+    color: #171522 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .10) !important;
+}
+
+body.light .btn-primary-purple {
+    background: #9333a5 !important;
+    color: #fff !important;
+}
+
+body.light .btn-primary-purple:hover {
+    background: #7e278c !important;
+}
+
+body.light .publish-features span {
+    border-color: rgba(124, 58, 237, .15) !important;
+    background: #f0e8ff !important;
+}
+
+body.light .publish-features span i {
+    color: var(--primary) !important;
+}
+
+/* 14. Iconos Font Awesome */
+.fa {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.publish-features span i {
+    font-size: 20px;
+}
+
+.login-icon i {
+    font-size: 30px;
+}
+
+.login-required-icon i {
+    font-size: 45px;
+}
+
+.slider-arrow i {
+    font-size: 18px;
+}
+
+.menu-btn i {
+    font-size: 22px;
+}
+
+/* 15. Adaptación a tabletas y teléfonos */
+@media (max-width: 900px) {
+    .navbar {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero {
+        min-height: 450px;
+    }
+
+    .hero-decoration {
+        opacity: .03;
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .publish-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .publish-info {
+        max-width: 600px;
+    }
+
+    .publish-features-row {
+        justify-content: center;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .header-container {
+        height: 65px;
+    }
+
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .featured-section,
+    .news-section {
+        padding: 50px 15px;
+    }
+
+    .pro-slides-track .featured-content {
+        padding: 22px;
+    }
+
+    .pro-slides-track .featured-content h3 {
+        font-size: 27px !important;
+    }
+
+    .section-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .publish-info h2 {
+        font-size: 35px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-overlay {
+        padding: 10px;
+    }
+
+    .modal-image {
+        height: 220px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-body h2 {
+        font-size: 25px;
+    }
+
+    .login-btn,
+    .user-session {
+        display: none !important;
+    }
+
+    .header-actions {
+        gap: 5px;
+    }
+
+    .login-modal {
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .hero-buttons,
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons button,
+    .form-buttons button {
+        width: 100%;
+    }
+}
+
+
+/* Sección de publicación: texto a la izquierda y tarjeta a la derecha */
+.publish-section {
+    padding: 60px 20px;
+}
+
+.publish-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+/* Columna izquierda */
+.publish-info {
+    flex: 1;
+    min-width: 0;
+    max-width: 550px;
+}
+
+/* Única tarjeta de publicación */
+.publish-container > .form-card {
+    flex: 0 1 400px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0;
+}
+
+/* Aviso de sesión */
+.login-required {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 900px) {
+    .publish-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+    }
+
+    .publish-info {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .publish-container > .form-card {
+        flex-basis: auto;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+
+/* Contenedor del usuario conectado */
+.user-session {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Icono del perfil */
+.user-icon {
+    font-size: 20px;
+    color: #8b45f7;
+}
+
+/* Botón para cerrar sesión */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* Efecto al pasar el cursor */
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* Tamaño del icono de salida */
+.logout-btn i {
+    font-size: 17px;
+}
+
+/* Controlar la visibilidad de los botones de sesión */
+.user-session {
+    display: none;
+}
+
+.user-session.active {
+    display: flex;
+}
+
+.login-btn {
+    display: block;
+}
+
+
+/* =========================================
+   EFECTO RELIEVE DEL SLIDER
+========================================= */
+
+/* Transición suave en ambos temas */
+.gz-pro-slider-container {
+    border-radius: 18px;
+    transition:
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+/* Relieve al pasar el cursor */
+.gz-pro-slider-container:hover {
+    transform: translateY(-5px) scale(1.003);
+
+    box-shadow:
+        0 18px 35px rgba(0, 0, 0, 0.22),
+        0 6px 12px rgba(139, 92, 246, 0.16);
+}
+
+/* Mantener las tarjetas dentro del contenedor */
+.featured-card {
+    transition:
+        filter 0.35s ease;
+}
+
+/* Resaltar ligeramente la imagen */
+.gz-pro-slider-container:hover .featured-card {
+    filter: saturate(1.08);
+}
+
+/* =========================================
+   AJUSTE PARA MODO CLARO
+========================================= */
+
+body.light .gz-pro-slider-container:hover {
+    box-shadow:
+        0 20px 38px rgba(70, 45, 110, 0.18),
+        0 5px 14px rgba(139, 92, 246, 0.20);
+}
+
+/* =========================================
+   AJUSTE PARA MODO OSCURO
+========================================= */
+
+body:not(.light) .gz-pro-slider-container:hover {
+    box-shadow:
+        0 22px 40px rgba(0, 0, 0, 0.48),
+        0 0 18px rgba(139, 92, 246, 0.14);
+}
+
+/* Evitar efectos de movimiento si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    .gz-pro-slider-container,
+    .featured-card {
+        transition: none;
+    }
+
+    .gz-pro-slider-container:hover {
+        transform: none;
+    }
+}
+
+/* ===================================================
+   📌 SOLUCIÓN DEFINITIVA: TÍTULO EN MODO CLARO
+   =================================================== */
+
+/* Apunta directamente al h2 dentro de la sección del carrusel */
+.light-mode .destacadas h2,
+.light-mode #publicar ~ .destacadas h2,
+.light-mode h2:has(+ .slider-container), 
+.light-mode h2 {
+    color: #1a1a1a !important; /* Gris oscuro de alta legibilidad */
+}
+
+/* En caso de que el título esté envuelto en una clase de presentación superior */
+.light-mode .slider-section h2,
+.light-mode .main-content h2 {
+    color: #1a1a1a !important;
+}
+
+/* ===================================================
+   🔥 MÁXIMO PROTAGONISMO AL LOGO GNBLAZE
+   =================================================== */
+
+/* Contenedor general del logo en el Navbar */
+.logo-container, .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 15px;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por encima del logo */
+.logo-container:hover, .logo:hover {
+    transform: scale(1.05); /* Pequeño impulso de tamaño interactivo */
+}
+
+/* Imagen del isotipo (La llama naranja) */
+.logo img, .logo-icon {
+    width: 48px; /* Incrementamos ligeramente su escala */
+    height: auto;
+    filter: drop-shadow(0 0 8px rgba(255, 69, 0, 0.6)); /* Resplandor neón naranja de fondo */
+    transition: filter 0.3s ease;
+}
+
+/* Potenciar el brillo de la llama al hacer hover */
+.logo-container:hover img, .logo:hover .logo-icon {
+    filter: drop-shadow(0 0 15px rgba(255, 69, 0, 0.9));
+}
+
+/* Estilo para las letras del logo si las tienes separadas en texto HTML */
+.logo-text-blaze {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(163, 73, 164, 0.3); /* Resplandor morado suave para el texto */
+}
+
+/* Ajuste adaptativo para el MODO CLARO (Bajamos la intensidad del brillo) */
+.light-mode .logo img, .light-mode .logo-icon {
+    filter: drop-shadow(0 2px 6px rgba(255, 69, 0, 0.3));
+}
+
+/* ===================================================
+   📌 CORRECCIÓN Y ESPACIADO EN EL FOOTER
+   =================================================== */
+
+/* Asegura que los enlaces de la comunidad se listen en vertical */
+.comunidad-links, 
+footer div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea todo a la izquierda */
+    gap: 12px; /* Añade un espacio perfecto de separación entre cada red social */
+}
+
+/* Estilo y separación interna para cada enlace */
+.comunidad-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Separa el icono Font Awesome del texto de la red social */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+/* 🔥 EFECTO HOVER: Colores de marca originales para cada red social */
+.comunidad-links a:hover i.fa-comments,
+.comunidad-links a:hover {
+    color: #5865F2 !important; /* Azul original de Discord */
+}
+
+.comunidad-links a:hover i.fa-instagram {
+    color: #E1306C !important; /* Rosa/Morado original de Instagram */
+}
+
+.comunidad-links a:hover i.fa-youtube-play {
+    color: #FF0000 !important; /* Rojo original de YouTube */
+}
+
+/* ===================================================
+   📌 COLOR GRIS PARA LOS LINKS DEL FOOTER
+   =================================================== */
+
+/* Color gris neutro por defecto para el texto e iconos */
+.comunidad-links a,
+.comunidad-links a i {
+    color: #6c757d !important; /* Gris intermedio de alta elegancia */
+    transition: color 0.25s ease !important;
+}
+
+/* 🔥 MANTIENE LOS EFECTOS HOVER (Al pasar el mouse) */
+.comunidad-links a:hover {
+    text-decoration: underline; /* Agrega un subrayado sutil al seleccionarlos */
+}
+
+/* Mantenemos los colores de marca individuales solo al pasar el mouse por encima */
+.comunidad-links a:hover i.fa-comments,
+.comunidad-links a:hover .fa-comments + span,
+.comunidad-links a:hover {
+    color: #5865F2 !important; /* Discord */
+}
+
+.comunidad-links a:hover i.fa-instagram {
+    color: #E1306C !important; /* Instagram */
+}
+
+.comunidad-links a:hover i.fa-youtube-play {
+    color: #FF0000 !important; /* YouTube */
+}
+
+/* ===================================================
+   📌 SOLUCIÓN DEFINITIVA: MAQUETACIÓN DEL FOOTER
+   =================================================== */
+
+/* 1. Forzar distribución en columnas verticales perfectas */
+.footer-links-gnblaze,
+.comunidad-links {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important; /* Espaciado idéntico entre cada fila */
+}
+
+/* 2. Unificar el comportamiento e iconos de ambas listas */
+.footer-links-gnblaze a,
+.comunidad-links a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important; /* Separación perfecta entre el icono y el texto */
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    color: #6c757d !important; /* Gris elegante base por defecto */
+    transition: color 0.25s ease-in-out !important;
+}
+
+/* 3. Asegurar la visibilidad y tamaño uniforme de todos los iconos Font Awesome */
+.footer-links-gnblaze a i,
+.comunidad-links a i {
+    color: #6c757d !important; /* Iconos en gris por defecto */
+    width: 20px !important;
+    text-align: center !important;
+    display: inline-block !important;
+    font-size: 1.1rem !important;
+    transition: color 0.25s ease-in-out !important;
+}
+
+/* ===================================================
+   🔥 EFECTOS HOVER (Al pasar el mouse por encima)
+   =================================================== */
+
+/* Enlaces de GNBlaze cambian a tu Morado Corporativo */
+.footer-links-gnblaze a:hover,
+.footer-links-gnblaze a:hover i {
+    color: var(--primary) !important;
+    text-decoration: underline !important;
+}
+
+/* Enlaces de Comunidad: cambian a los colores oficiales de cada marca */
+.comunidad-links a:hover {
+    text-decoration: underline !important;
+}
+
+/* Discord (Azul Blur) */
+.comunidad-links a:hover:has(.fa-comments),
+.comunidad-links a:hover i.fa-comments {
+    color: #5865F2 !important;
+}
+
+/* Instagram (Gradiente Rosa/Morado) */
+.comunidad-links a:hover:has(.fa-instagram),
+.comunidad-links a:hover i.fa-instagram {
+    color: #E1306C !important;
+}
+
+/* YouTube (Rojo Puro) */
+.comunidad-links a:hover:has(.fa-youtube-play),
+.comunidad-links a:hover i.fa-youtube-play {
+    color: #FF0000 !important;
+}
+
+
+
+/* =====================================================
+   AJUSTES DE ACCESIBILIDAD Y CONSISTENCIA VISUAL
+   ===================================================== */
+
+:root {
+    --surface: #151820;
+    --surface-hover: #1b1f29;
+    --text-on-primary: #ffffff;
+    --focus-ring: #f59e0b;
+}
+
+body.light {
+    --surface: #ffffff;
+    --surface-hover: #f0f0f4;
+}
+
+/* Los controles usan variables existentes y texto legible en ambos temas. */
+.theme-btn,
+.menu-btn {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    cursor: pointer;
+}
+
+.theme-btn svg {
+    fill: currentColor !important;
+}
+
+
+.theme-btn:hover,
+.menu-btn:hover {
+    background: var(--surface-hover) !important;
+    color: var(--text) !important;
+}
+
+
+/* Hover en modo claro */
+body.light .theme-btn:hover,
+body.light .menu-btn:hover {
+    background: #e5e7eb !important;
+    color: #6d28d9 !important;
+}
+
+body.light .theme-btn svg {
+    fill: currentColor !important;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #b91c1c !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.logout-btn:hover {
+    background: #991b1b !important;
+}
+
+#loginButton,
+.login-btn {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+}
+
+body.light #loginButton,
+body.light .login-btn {
+    background: #f3f4f6 !important;
+    color: #17181d !important;
+}
+
+/* El foco del teclado debe distinguirse en cualquier fondo. */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Mantiene las imágenes de noticias a borde y separa el texto del borde. */
+.news-card {
+    padding: 0 !important;
+}
+
+.news-content {
+    padding: 20px !important;
+}
+
+.form-card,
+.login-modal,
+.publish-login-box,
+.publish-login-card,
+.publish-card,
+.feature-item {
+    box-sizing: border-box;
+}
+
+.form-card { padding: 30px !important; }
+.login-modal { padding: 35px !important; }
+.publish-card,
+.feature-item { padding: 16px !important; }
+.modal-body { padding: 30px !important; }
+.pro-slides-track .featured-content { padding: 35px 40px !important; }
+
+/* Colores de acento coherentes con la paleta morado/naranja. */
+.publish-icon-box,
+.feature-icon {
+    background: rgba(124, 58, 237, .12);
+}
+
+.publish-icon-box i,
+.feature-icon i,
+.user-icon {
+    color: var(--primary-light);
+}
+
+.publish-card:hover,
+.feature-item:hover {
+    border-color: var(--primary);
+    background: rgba(124, 58, 237, .06);
+}

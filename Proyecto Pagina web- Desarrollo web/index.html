@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BlazeNG - Noticias de videojuegos">
+    <link rel="icon" type="image/svg+xml" href="Images/Logo stuff.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <title>GNBlaze | Noticias de Videojuegos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="header-container">
+            <!-- encabezado principal-->
+            <a href="#" class="logo" onclick="mostrarInicio()">
+                <img src="Images/Logo stuff.svg" alt="BlazeGN Logo" class="logo-img">
+                <span>GN<span>Blaze</span></span>
+            </a>
+
+            <!-- Barra de navegacion -->
+            <nav class="navbar">
+                <a href="#" onclick="mostrarInicio()">Inicio</a>
+                <a href="#noticias" onclick="mostrarNoticias()">Noticias</a>
+                <a href="#categorias">Categorias</a>
+
+                <a href="#publicar" id="publicarNav" onclick="mostrarFormulario()">
+                    Publicar
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+                <!-- Usuario cuando está conectado -->
+                <div class="user-session" id="userSession">
+
+                    <!-- Icono de usuario -->
+                    <i class="fa fa-user-circle user-icon" aria-hidden="true"></i>
+
+                    <!-- Nombre del usuario, lo controla JavaScript -->
+                    <span id="userName"></span>
+
+                    <!-- Icono para cerrar sesión -->
+                    <button class="logout-btn" onclick="cerrarSesion()" title="Cerrar sesión"
+                        aria-label="Cerrar sesión">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </button>
+
+                </div>
+
+
+
+                <!-- Botón iniciar sesión -->
+                <button class="login-btn" id="loginButton" onclick="abrirLogin()">
+                    Iniciar sesión
+                </button>
+
+
+                <button class="theme-btn" onclick="cambiarTema()" title="Cambiar tema">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#e3e3e3">
+                        <path
+                            d="M565-395q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35Zm-226.5 56.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
+                    </svg>
+                </button>
+
+
+                <button class="menu-btn" onclick="toggleMenu()">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MENÚ MÓVIL ================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="#" onclick="mostrarInicio(); toggleMenu()">
+            Inicio
+        </a>
+
+        <a href="#noticias" onclick="mostrarNoticias(); toggleMenu()">
+            Noticias
+        </a>
+
+        <a href="#categorias" onclick="toggleMenu()">
+            Categorias
+        </a>
+
+        <a href="#publicar" id="mobilePublicar" onclick="mostrarFormulario(); toggleMenu()">
+            Publicar
+        </a>
+
+        <a href="#" id="mobileLogin" onclick="abrirLogin(); toggleMenu()">
+            Iniciar sesión
+        </a>
+
+    </div>
+
+
+    <!-- ================= CONTENIDO ================= -->
+
+    <main>
+
+        <!-- ================= DESTACADA ================= -->
+
+        <section class="featured-section">
+
+            <div class="section-title">
+                <div>
+                    <span class="small-title">LO MÁS RECIENTE</span>
+                    <h2>Noticias destacadas</h2>
+                </div>
+            </div>
+
+            <!-- 1. SACAMOS LAS FLECHAS AQUÍ AFUERA (Para que puedan flotar en el fondo negro) -->
+            <button class="slider-arrow prev-btn" onclick="slideAnterior()">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+
+            <button class="slider-arrow next-btn" onclick="slideSiguiente()">
+                <i class="fa fa-chevron-right"></i>
+            </button>
+
+            <!-- 2. LA CAJA DEL SLIDER (Se queda sola conteniendo únicamente el riel de imágenes) -->
+            <div class="gz-pro-slider-container">
+                <div id="featuredNews" class="featured-news pro-slides-track">
+                    <!-- Tu JS inyectará las tarjetas aquí -->
+                </div>
+            </div>
+
+            <!-- 3. LOS PUNTOS INDICADORES (Se quedan abajo fuera de la caja) -->
+            <div class="featured-slider-dots"></div>
+
+        </section>
+
+
+        <!-- ================= NOTICIAS ================= -->
+
+        <section class="news-section" id="noticias">
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="small-title">
+                        ACTUALIDAD
+                    </span>
+
+                    <h2>
+                        Últimas noticias
+                    </h2>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 860" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                        </svg></span>
+
+                    <input type="text" id="searchInput" placeholder="Buscar noticias..." oninput="buscarNoticias()">
+
+                </div>
+
+            </div>
+
+
+
+
+            <!-- CATEGORÍAS -->
+
+            <div class="categories" id="categorias">
+
+                <button class="category active" onclick="filtrarCategoria('Todas', this)">
+                    Todas
+                </button>
+
+                <button class="category" onclick="filtrarCategoria('Noticias', this)">
+                    Noticias
+                </button>
+
+                <button class="category" onclick="filtrarCategoria('Lanzamientos', this)">
+                    Lanzamientos
+
+                </button>
+
+                <button class="category" onclick="filtrarCategoria('PC', this)">
+                    PC
+                </button>
+
+                <button class="category" onclick="filtrarCategoria('PlayStation', this)">
+                    PlayStation
+                </button>
+
+                <button class="category" onclick="filtrarCategoria('Xbox', this)">
+                    Xbox
+                </button>
+
+                <button class="category" onclick="filtrarCategoria('Nintendo', this)">
+                    Nintendo
+                </button>
+
+            </div>
+
+
+            <div class="news-grid" id="newsGrid">
+            </div>
+
+
+            <div id="noResults" class="no-results">
+
+                <div><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#e3e3e3">
+                        <path
+                            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                    </svg></div>
+
+                <h3>
+                    No encontramos noticias
+                </h3>
+
+                <p>
+                    Prueba con otro término de búsqueda.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ================= PUBLICAR ================= -->
+        <section class="publish-section" id="publicar">
+
+            <div class="publish-container">
+
+                <!-- COLUMNA IZQUIERDA -->
+                <div class="publish-info">
+
+                    <span class="small-title">COMPARTE CON LA COMUNIDAD</span>
+
+                    <h2>Publica tu propia <span>noticia</span></h2>
+
+                    <p class="publish-desc">
+                        Comparte información, novedades y noticias del mundo gamer
+                        con todos los visitantes de GN Blaze.
+                    </p>
+
+                    <!-- Características de la publicación -->
+                    <div class="publish-features-row">
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-newspaper-o"></i>
+                            </div>
+                            <span>Comparte noticias</span>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-gamepad"></i>
+                            </div>
+                            <span>Habla sobre videojuegos</span>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-rocket"></i>
+                            </div>
+                            <span>Informa a la comunidad</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- COLUMNA DERECHA: ÚNICA TARJETA -->
+                <div class="form-card">
+
+                    <h3 id="formTitle">Crear publicación</h3>
+
+                    <!-- Aviso si no ha iniciado sesión -->
+                    <div id="loginRequired" class="login-required">
+
+                        <div class="login-required-icon">
+                            <i class="fa fa-lock"></i>
+                        </div>
+
+                        <h3>Necesitas iniciar sesión</h3>
+
+                        <p>
+                            Inicia sesión para poder publicar,
+                            editar y administrar noticias.
+                        </p>
+
+                        <button class="btn-primary" onclick="abrirLogin()">
+                            Iniciar sesión
+                        </button>
+
+                    </div>
+
+                    <!-- Formulario para crear o editar noticias -->
+                    <form id="newsForm" class="hidden">
+
+                        <input type="hidden" id="editId">
+
+                        <div class="form-group">
+                            <label for="title">Título de la noticia</label>
+                            <input type="text" id="title" placeholder="Ej: Nuevo tráiler de..." required>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="category">Categoría</label>
+
+                                <select id="category" required>
+                                    <option value="">Seleccionar categoría</option>
+                                    <option value="Noticias">Noticias</option>
+                                    <option value="Lanzamientos">Lanzamientos</option>
+                                    <option value="PC">PC</option>
+                                    <option value="PlayStation">PlayStation</option>
+                                    <option value="Xbox">Xbox</option>
+                                    <option value="Nintendo">Nintendo</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="author">Autor</label>
+                                <input type="text" id="author" placeholder="Tu nombre" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image">URL de la imagen</label>
+                            <input type="url" id="image" placeholder="https://...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content">Contenido</label>
+                            <textarea id="content" rows="7" placeholder="Escribe aquí el contenido..."
+                                required></textarea>
+                        </div>
+
+                        <div class="form-buttons">
+
+                            <button type="submit" class="btn-primary full-btn" id="submitBtn">
+                                Publicar noticia
+                            </button>
+
+                            <button type="button" class="btn-cancel" id="cancelBtn" onclick="cancelarEdicion()">
+                                Cancelar
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="#" class="logo">
+
+                    <span class="logo-icon">
+
+                    </span>
+
+                    <span>
+                        <span></span>
+                    </span>
+
+                </a>
+
+                <p>
+                    Tu espacio para conocer todo sobre
+                    el mundo de los videojuegos.
+                </p>
+
+            </div>
+
+
+            <!-- Columna GNBlaze en tu Footer -->
+            <div class="footer-links-gnblaze">
+                <h4>GNBlaze</h4>
+
+                <!-- 📌 Icono de Casa para Inicio -->
+                <a href="#inicio">
+                    <i class="fa fa-home"></i> <span>Inicio</span>
+                </a>
+
+                <!-- 📌 Icono de Periódico para Noticias -->
+                <a href="#noticias">
+                    <i class="fa fa-newspaper-o"></i> <span>Noticias</span>
+                </a>
+
+                <!-- 📌 Icono de Control de Videojuegos o Añadir para Publicar -->
+                <a href="#publicar">
+                    <i class="fa fa-plus-circle"></i> <span>Publicar</span>
+                </a>
+            </div>
+
+
+            <!-- Columna de Comunidad en tu Footer -->
+            <div class="comunidad-links">
+                <h4>Comunidad</h4>
+
+                <!-- 📌 Enlace a Discord -->
+                <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-comments"></i> Discord
+                </a>
+
+                <!-- 📌 Enlace a Instagram -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-instagram"></i> Instagram
+                </a>
+
+                <!-- 📌 Enlace a YouTube -->
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-youtube-play"></i> YouTube
+                </a>
+            </div>
+
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 GNBlaze. Todos los derechos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= MODAL NOTICIA ================= -->
+
+    <div class="modal-overlay" id="modalOverlay">
+
+        <div class="modal">
+
+            <button class="modal-close" onclick="cerrarModal()">
+                <i class="fa fa-times"></i>
+            </button>
+
+            <div id="modalContent"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MODAL LOGIN ================= -->
+
+    <div class="modal-overlay" id="loginOverlay">
+
+        <div class="login-modal">
+
+            <button class="modal-close" onclick="cerrarLogin()">
+                ×
+            </button>
+
+
+            <div class="login-header">
+
+                <div class="login-icon">
+                    <i class="fa fa-gamepad"></i>
+                </div>
+
+                <h2>
+                    Iniciar sesión
+                </h2>
+
+                <p>
+                    Accede a tu cuenta de GN Blaze
+                </p>
+
+            </div>
+
+
+            <form id="loginForm" method="post" action="" onsubmit="iniciarSesion(event)" autocomplete="on">
+
+                <div class="form-group">
+
+                    <label for="loginUser">
+                        Usuario
+                    </label>
+
+                    <input type="text" id="loginUser" name="username" autocomplete="username" placeholder="Ingresa tu usuario" required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Contraseña
+                    </label>
+
+                    <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="Ingresa tu contraseña" required>
+
+                </div>
+
+
+                <div id="loginError" class="login-error">
+                </div>
+
+                <button type="submit" class="btn-primary login-submit">
+                    <i class="fa fa-sign-in"></i> Ingresar
+                </button>
+
+            </form>
+
+
+            <div class="demo-account">
+
+                <strong>
+                    Cuenta de prueba
+                </strong>
+
+                <p>
+                    Usuario: <b>admin</b>
+                </p>
+
+                <p>
+                    Contraseña: <b>1234</b>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
